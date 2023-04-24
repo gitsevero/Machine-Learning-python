@@ -19,18 +19,16 @@ while 1:
         kernel = np.ones((3, 3), np.uint8)
         roi = frame[100:300, 100:300]
         cv2.rectangle(frame, (100, 100), (300, 300), (0, 255, 0), 0) 
-        hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV) 
 ```
 
 As bibliotecas importadas são:
-
-- `cv2`: biblioteca OpenCV para processamento de imagem;
-- `os`: biblioteca para interação com o sistema operacional;
-- `numpy`: biblioteca para trabalhar com matrizes e cálculos numéricos;
-- `math`: biblioteca para funções matemáticas.
+- cv2: biblioteca OpenCV para processamento de imagem;
+- os: biblioteca para interação com o sistema operacional;
+- numpy: biblioteca para trabalhar com matrizes e cálculos numéricos;
+- math: biblioteca para funções matemáticas.
 
 As variáveis configuradas são:
-
 - `cap`: objeto que representa a câmera;
 - `ret`: variável booleana que indica se o frame foi lido com sucesso ou não;
 - `frame`: variável que armazena o frame lido da câmera;
@@ -52,10 +50,10 @@ Nesta parte do código, é definida a máscara que será usada para a detecção
 
 ```python
 mask = cv2.dilate(mask, kernel, iterations=4)
+
 mask = cv2.GaussianBlur(mask, (5, 5), 100)
 ```
 
 Nesta parte do código, são aplicadas duas operações morfológicas na máscara criada anteriormente:
-
 - Dilatação: essa operação é usada para aumentar o tamanho dos objetos na imagem. Isso é útil para preencher eventuais buracos na máscara e deixá-la mais uniforme. A função `cv2.dilate` é usada para aplicar essa operação na máscara, usando o elemento estruturante definido pela variável `kernel`.
-- Desfoque gaussiano: essa operação é usada para suavizar a másc
+- Desfoque gaussiano: essa operação é usada para suavizar a máscara e remover ruídos. Isso ajuda a tornar a detecção de contornos mais precisa. A função cv2.GaussianBlur é usada para aplicar o desfoque gaussiano na máscara, utilizando um kernel com tamanho de (5,5) e desvio padrão de 100.
